@@ -1,0 +1,68 @@
+--radio
+--Default BGM Destroy
+local player = game.Players.LocalPlayer
+game.Players[player.Name].PlayerScripts.LocalBackgroundMusic:Destroy()
+
+--Mute is false
+local Mute = false
+
+local folder = Instance.new("Folder", workspace.music) --create radio folder
+	folder.Name = "radio"
+
+    local sounds = {
+        "rbxassetid://1842306658", 
+        "rbxassetid://1842228058",
+        "rbxassetid://1845439824",
+        "rbxassetid://1845760969",
+        "rbxassetid://1840511472",
+        "rbxassetid://1841476350",
+        "rbxassetid://1842418466",
+        "rbxassetid://1842418598",
+        "rbxassetid://1841476158",
+        "rbxassetid://1845439761",
+        "rbxassetid://1842408897"
+    }
+
+    local soundTime = {
+        107.653, 
+        160.914,
+        140.226,
+        212.599,
+        122.409,
+        188.46,
+        102.462,
+        92.399,
+        60.962,
+        144.419,
+        189.592
+    }
+wait(1)
+while true do
+    --radiowhile
+    local RandomIndex = math.random(1,#sounds)
+    print(RandomIndex)
+    local sound = Instance.new("Sound")
+    sound.SoundId = sounds[RandomIndex] --select sounds
+    sound.Parent = workspace.music.radio
+    sound.Volume = 0.1
+    sound:Play()
+---Mute Button--
+local MuteButton = game:GetService("Players")["charu_d2"].PlayerGui.MuteButtonGui.Button
+
+MuteButton.MouseButton1Up:Connect(function () -- MuteButton Click Function
+	if Mute == true then --if Mute is off then volume 0 and Mute is true
+		Mute = false
+		print(Mute)
+		sound.Volume = 0.1
+	else				 --if Mute is on then volume 0.1 and Mute is false
+ 		Mute = true
+		print(Mute)
+		sound.Volume = 0
+	end
+end)
+----------------
+
+    wait(soundTime[RandomIndex]) --wait song time while loop
+end
+    --radiowhile
+--radio
